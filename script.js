@@ -1,6 +1,13 @@
+const addBtn = document.getElementById('add-button');
+const formDiv = document.getElementById('form-input');
+
+// displays form when button is clicked
+addBtn.addEventListener('click', () => {
+  formDiv.style.display = 'block';
+});
+
 // Global var declarations
 let myLibrary = [];
-let newBook;
 
 // defines a object that will stored in array
 class Book {
@@ -21,19 +28,20 @@ function addBookToLibrary(book) {
 
 // Iterate over array on display each index
 function viewBooks() {
+  let list = [];
+  let name;
   for (let i = 0; i < myLibrary.length; i++) {
-    console.log(myLibrary[i].title);
+    name = myLibrary[i].title;
+    list.push(name);
   }
+  document.querySelector('body').append(list);
 }
 
-newBook = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not');
-addBookToLibrary(newBook);
+// Take values from form to add book
+function getBook(nameA, nameB, num, bool) {
+  let newBook = new Book(nameA, nameB, num, bool);
+  addBookToLibrary(newBook);
+}
 
-newBook = new Book('The Gold', 'Neil Forsyth', 320, 'not');
-addBookToLibrary(newBook);
-
-newBook = new Book('The Cat', 'James Tucker', 100, 'not');
-addBookToLibrary(newBook);
-
-console.table(myLibrary);
+getBook('The Hobbit', 'J.R.R. Tolkien', 295, 'No');
 viewBooks();

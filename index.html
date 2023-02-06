@@ -8,5 +8,35 @@
     <script src="./script.js" defer></script>
     <title>Library</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Library</h1>
+    <div id="form-input">
+      <form action="">
+        <input
+          type="text"
+          name="book-title"
+          id="book-title"
+          placeholder="name of book..."
+        />
+        <input
+          type="text"
+          name="author"
+          id="book-author"
+          placeholder="author..."
+        />
+        <input
+          type="text"
+          name="pages"
+          id="book-pages"
+          placeholder="number of pages..."
+        />
+        <input type="radio" name="have-read" id="have-read-Y" value="Yes" />
+        <label for="have-read-Y">Yes</label>
+        <input type="radio" name="have-read" id="have-read-N" value="No" />
+        <label for="have-read-N">No</label>
+        <button type="submit" value="submit" id="submit">submit</button>
+      </form>
+    </div>
+    <button type="button" id="add-button">New Book</button>
+  </body>
 </html>
