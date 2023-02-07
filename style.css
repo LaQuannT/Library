@@ -1,11 +1,90 @@
+:root {
+  --margin: 30px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
+  margin: 0;
+  padding: 0;
+  font: inherit;
   font-family: monospace;
 }
 
-body {
+img,
+picture,
+svg,
+video {
   display: block;
+  max-width: 100%;
 }
 
-#form-input {
-  display: none;
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(300px, 20%) 1fr;
+}
+
+.sidebar {
+  background-color: #1c4464;
+  color: #eccab5;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.sidebar > h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin: var(--margin);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 40px;
+  gap: 20px;
+}
+
+#add-btn {
+  margin: var(--margin);
+}
+
+.content {
+  background-color: #e5edfc;
+  display: inherit;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+}
+
+.counters {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px;
+  box-shadow: 5px 5px 8px #1c4464;
+  margin: var(--margin);
+  padding: 20px;
+  background-color: #eccab5;
+}
+
+.bk-shelf {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+table {
+  width: 75%;
+  box-shadow: 5px 5px 8px #1c4464;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  text-align: center;
 }

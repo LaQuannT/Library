@@ -4,39 +4,65 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="./script.js" defer></script>
     <title>Library</title>
   </head>
   <body>
-    <h1>Library</h1>
-    <div id="form-input">
-      <form action="">
-        <input
-          type="text"
-          name="book-title"
-          id="book-title"
-          placeholder="name of book..."
-        />
-        <input
-          type="text"
-          name="author"
-          id="book-author"
-          placeholder="author..."
-        />
-        <input
-          type="text"
-          name="pages"
-          id="book-pages"
-          placeholder="number of pages..."
-        />
-        <input type="radio" name="have-read" id="have-read-Y" value="Yes" />
-        <label for="have-read-Y">Yes</label>
-        <input type="radio" name="have-read" id="have-read-N" value="No" />
-        <label for="have-read-N">No</label>
-        <button type="submit" value="submit" id="submit">submit</button>
-      </form>
+    <div class="container">
+      <div class="sidebar">
+        <h1>Library</h1>
+        <form action="#">
+          <div class="questions">
+            <label for="title">Title of book?</label>
+            <input type="text" name="title" id="book-title" />
+          </div>
+          <div class="questions">
+            <label for="author">Name of author?</label>
+            <input type="text" name="author" id="author" />
+          </div>
+          <div class="questions">
+            <label for="pages">Number of pages?</label>
+            <input type="text" name="pages" id="pages" />
+          </div>
+          <fieldset>
+            <legend>Choose status of book:</legend>
+            <div class="questions">
+              <input type="checkbox" name="read" id="read" />
+              <label for="read">Read</label>
+            </div>
+            <div class="questions">
+              <input type="checkbox" name="not-read" id="not-read" checked />
+              <label for="not-read">Not Read</label>
+            </div>
+          </fieldset>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+        <button type="button" id="add-btn">+</button>
+      </div>
+      <div class="content">
+        <div class="counters">
+          <p class="book-counter">Amount of books: <span id="bk-num"></span></p>
+          <p class="books-read">Books read: <span id="bk-read"></span></p>
+          <p class="to-read">Books to read: <span id="bk-to-read"></span></p>
+        </div>
+        <div class="bk-shelf">
+          <table>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Pages</th>
+              <th>Read</th>
+            </tr>
+            <tr>
+              <td>The Hobbit</td>
+              <td>J.R.R. Tolkien</td>
+              <td>295</td>
+              <td>No</td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <button type="button" id="add-button">New Book</button>
   </body>
 </html>
