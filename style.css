@@ -43,14 +43,25 @@ video {
 }
 
 form {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin: 40px;
   gap: 20px;
 }
 
+.action {
+  text-align: center;
+}
 #add-btn {
   margin: var(--margin);
+  height: 50px;
+  width: 50px;
+  background-color: #eccab5;
+  font-size: 2rem;
+  font-weight: 500;
+  border: 1px;
+  border-radius: 6px;
+  box-shadow: 0 5px 8px;
 }
 
 .content {
