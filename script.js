@@ -1,4 +1,4 @@
-// local storage array
+// Array to hold books
 let myLibrary = [];
 
 // defines a object that will be stored in array
@@ -19,9 +19,17 @@ function addBookToLibrary(nameA, nameB, num, bool) {
   bookDisplay();
 }
 
-// Iterate over array on display each book in page table
+/* Inserts a row and cells to table - iterating over array and displaying each book in page table */
 function bookDisplay() {
+  let rNum = myLibrary.length;
+  let row = table.insertRow(rNum);
+  let bk = row.insertCell(0);
+  let writer = row.insertCell(1);
+  let pgNum = row.insertCell(2);
+  let rd = row.insertCell(3);
+
   for (let i = 0; i < myLibrary.length; i++) {
+    rNum = rNum + i;
     bk.textContent = myLibrary[i].title;
     writer.textContent = myLibrary[i].author;
     pgNum.textContent = myLibrary[i].pages;
@@ -29,27 +37,27 @@ function bookDisplay() {
   }
 }
 
-// selectors for form input values
-const bkName = document.getElementById('book-title').value;
-const bkAuthor = document.getElementById('author').value;
-const bkPages = document.getElementById('pages').value;
-const submit = document.getElementById('submit');
-
-// selectors to add to book table
+// DOM element selection
+const submit = document.querySelector('#submit');
 const addBtn = document.getElementById('add-btn');
 const form = document.querySelector('form');
 const table = document.querySelector('table');
-let row = table.insertRow(1);
-let bk = row.insertCell(0);
-let writer = row.insertCell(1);
-let pgNum = row.insertCell(2);
-let rd = row.insertCell(3);
 
 // displays form when add book btn is clicked
 addBtn.addEventListener('click', () => {
   form.style.display = 'flex';
 });
 
-//test  for bug in adding book to table - bug: book just replaces first book
+// Event listener taking user input and adding it to table
+submit.addEventListener('click', (event) => {
+  event.preventDefault();
+  let bkName = document.querySelector('#book-title').value;
+  let bkAuthor = document.querySelector('#author').value;
+  let bkPages = document.querySelector('#pages').value;
+  let bkStatus = document.querySelector('input[name="status"]:checked').value;
+  addBookToLibrary(bkName, bkAuthor, bkPages, bkStatus);
+});
+
+/* used to test for bugs
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, 'no');
-addBookToLibrary('Cause!', 'Jackie & Kevin Freiberg', 195, 'no');
+addBookToLibrary('Cause!', 'Jackie & Kevin Freiberg', 195, 'no');*/
