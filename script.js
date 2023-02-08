@@ -27,6 +27,7 @@ function bookDisplay() {
   let writer = row.insertCell(1);
   let pgNum = row.insertCell(2);
   let rd = row.insertCell(3);
+  let del = row.insertCell(4);
 
   for (let i = 0; i < myLibrary.length; i++) {
     rNum = rNum + i;
@@ -34,11 +35,12 @@ function bookDisplay() {
     writer.textContent = myLibrary[i].author;
     pgNum.textContent = myLibrary[i].pages;
     rd.textContent = myLibrary[i].read;
+    del.innerHTML = '<button type="button" class="del-btn">Remove</button>';
   }
 }
 
 // DOM element selection
-const submit = document.querySelector('#submit');
+const btnSubmit = document.querySelector('#btn-submit');
 const addBtn = document.getElementById('add-btn');
 const form = document.querySelector('form');
 const table = document.querySelector('table');
@@ -49,15 +51,32 @@ addBtn.addEventListener('click', () => {
 });
 
 // Event listener taking user input and adding it to table
-submit.addEventListener('click', (event) => {
+btnSubmit.addEventListener('click', (event) => {
   event.preventDefault();
   let bkName = document.querySelector('#book-title').value;
   let bkAuthor = document.querySelector('#author').value;
   let bkPages = document.querySelector('#pages').value;
   let bkStatus = document.querySelector('input[name="status"]:checked').value;
   addBookToLibrary(bkName, bkAuthor, bkPages, bkStatus);
+
+  // Clears input fields
+  form.reset();
+
+  // Hides form
+  form.style.display = 'none';
 });
 
-/* used to test for bugs
+// Listens for del btn for removal of tr
+table.addEventListener('click', (event) => {
+  // if target clicked don't have a class 'del-btn' ignore
+  if (!event.target.classList.contains('del-btn')) {
+    return;
+  }
+  // del the row that the del-btn is on
+  const delBtn = event.target;
+  delBtn.closest('tr').remove();
+});
+
+// used to test for bugs
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, 'no');
-addBookToLibrary('Cause!', 'Jackie & Kevin Freiberg', 195, 'no');*/
+addBookToLibrary('Cause!', 'Jackie & Kevin Freiberg', 195, 'no');
