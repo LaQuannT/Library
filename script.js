@@ -1,4 +1,3 @@
-// Array to hold books
 let myLibrary = [];
 
 // defines a object that will be stored in array
@@ -16,12 +15,12 @@ class Book {
 function addBookToLibrary(nameA, nameB, num, bool) {
   let newBook = new Book(nameA, nameB, num, bool);
   myLibrary.push(newBook);
-  bookDisplay();
+  bookDisplay(myLibrary);
 }
 
 /* Inserts a row and cells to table - iterating over array and displaying each book in page table */
-function bookDisplay() {
-  let rNum = myLibrary.length;
+function bookDisplay(array) {
+  let rNum = array.length;
   let row = table.insertRow(rNum);
   let bk = row.insertCell(0);
   let writer = row.insertCell(1);
@@ -29,13 +28,35 @@ function bookDisplay() {
   let rd = row.insertCell(3);
   let del = row.insertCell(4);
 
-  for (let i = 0; i < myLibrary.length; i++) {
-    rNum = rNum + i;
+  for (let i = 0; i < rNum; i++) {
     bk.textContent = myLibrary[i].title;
     writer.textContent = myLibrary[i].author;
     pgNum.textContent = myLibrary[i].pages;
-    rd.textContent = myLibrary[i].read;
+    rd.innerHTML = `<button type="button" class="stat-btn">
+        ${myLibrary[i].read}
+      </button>`;
     del.innerHTML = '<button type="button" class="del-btn">Remove</button>';
+  }
+}
+
+// gets the index of the book
+function bookNum(libraryArray, arg) {
+  if (libraryArray.length <= 0) {
+    return 0;
+  }
+  for (i of libraryArray) {
+    if (i.title === arg) {
+      return libraryArray.indexOf(i);
+    }
+  }
+}
+
+// updates the read status of book
+function changeRead(i) {
+  if (myLibrary[i].read === 'No') {
+    myLibrary[i].read = 'Yes';
+  } else if (myLibrary[i].read === 'Yes') {
+    myLibrary[i].read = 'No';
   }
 }
 
@@ -68,15 +89,18 @@ btnSubmit.addEventListener('click', (event) => {
 
 // Listens for del btn for removal of tr
 table.addEventListener('click', (event) => {
-  // if target clicked don't have a class 'del-btn' ignore
-  if (!event.target.classList.contains('del-btn')) {
-    return;
+  // if target clicked has class 'del-btn' remove table row
+  if (event.target.classList.contains('del-btn')) {
+    event.target.closest('tr').remove();
+  } else if (event.target.classList.contains('stat-btn')) {
+    let buffer = event.target.closest('tr');
+    let nameArg = buffer.firstChild.innerHTML;
+    changeRead(bookNum(myLibrary, nameArg));
   }
-  // del the row that the del-btn is on
-  const delBtn = event.target;
-  delBtn.closest('tr').remove();
 });
 
-// used to test for bugs
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, 'no');
-addBookToLibrary('Cause!', 'Jackie & Kevin Freiberg', 195, 'no');
+//used to test for bugs
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, 'No');
+addBookToLibrary('Cause!', 'Jackie & Kevin Freiberg', 195, 'No');
+
+/* has a few bugs that need fixing*/
