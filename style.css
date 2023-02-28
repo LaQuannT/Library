@@ -89,7 +89,7 @@ form {
 }
 
 table {
-  width: 75%;
+  width: 85%;
   box-shadow: 5px 5px 8px #1c4464;
 }
 
@@ -97,5 +97,6 @@ table,
 th,
 td {
   border: 1px solid;
+  border-collapse: collapse;
   text-align: center;
 }
